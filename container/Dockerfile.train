@@ -1,0 +1,19 @@
+FROM python:3.7-slim-buster
+
+RUN apt-get -y update && apt-get install -y --no-install-recommends \
+         wget \
+         nginx \
+         ca-certificates \
+         git \
+         python3-dev \
+         gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY container/requirements.txt /opt/program/requirements.txt
+RUN pip install --no-cache-dir -r /opt/program/requirements.txt
+
+RUN pip3 install sagemaker-training
+
+COPY container/train.py /opt/ml/code/train.py
+
+ENV SAGEMAKER_PROGRAM train.py
