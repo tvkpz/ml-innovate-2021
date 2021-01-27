@@ -1,0 +1,13 @@
+#dependencies for the custom model
+numpy
+pandas
+pillow
+pyyaml
+scikit-learn
+scikit-image
+scipy
+boto3
+xgboost==1.2.1
+fairlearn
+statsmodels
+smdebug
